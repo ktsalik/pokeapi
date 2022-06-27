@@ -174,15 +174,28 @@
     }
 
     .bars {
+      display: flex;
+      flex-direction: column;
+      margin-left: 30px;
 
       .bars__item {
+        width: 300px;
+        max-width: 100%;
+        height: 20px;
+        margin: 10px 0;
+        border-radius: 10px;
 
+        .bar {
+          height: 100%;
+          border-radius: 10px;
+          background: #000;
+        }
       }
     }
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 847px) {
   .pokemon-card {
     display: flex;
     flex-direction: column;

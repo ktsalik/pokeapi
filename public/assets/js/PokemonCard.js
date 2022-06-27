@@ -122,7 +122,7 @@ function PokemonCard(props) {
                   key={i}
                   className="labels__item"
                 >
-                  <span>{name}</span>
+                  <span>{name.capitalize()}</span>
                 </div>
               );
             })}
@@ -144,7 +144,23 @@ function PokemonCard(props) {
           </div>
 
           <div className="bars">
+            {
+              data.stats.map((stat, i) => {
+                const value = stat.base_stat;
 
+                return (
+                  <div
+                    key={i}
+                    className="bars__item"
+                  >
+                    <div
+                      className="bar"
+                      style={{width: `${(value * 100) / 200}%`}}
+                    ></div>
+                  </div>
+                );
+              })
+            }
           </div>
         </div>
       }
