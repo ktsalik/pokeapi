@@ -1,0 +1,8 @@
+.pokemon-list {
+  width: 100%;
+  max-width: 1319px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  z-index: 1;
+}/*# sourceMappingURL=PokemonList.css.map */
