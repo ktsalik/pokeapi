@@ -35,7 +35,7 @@ function PokemonCard(props) {
   }
 
   return (
-    <div className="pokemon-card">
+    <div className="pokemon-card" style={{display: props.visible ? 'flex' : 'none'}}>
       {
         loading === false && <div className="details">
           <div className="id">#{data.id}</div>
