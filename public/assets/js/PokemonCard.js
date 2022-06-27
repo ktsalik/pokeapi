@@ -8,6 +8,7 @@ function PokemonCard(props) {
     axios.get(props.data.url).then((response) => {
       setLoading(false);
       setData(response.data);
+      props.onLoad(response.data);
 
       request.get(`api/pokemon/${response.data.id}`).then((response) => {
         setIsFavourite(response.data.is_favourite);
@@ -35,7 +36,7 @@ function PokemonCard(props) {
   }
 
   return (
-    <div className="pokemon-card" style={{display: props.visible ? 'flex' : 'none'}}>
+    <div className="pokemon-card" style={{display: props.visible && (!props.visibleType || data.types.find((i) => i.type.name === props.visibleType)) ? 'flex' : 'none'}}>
       {
         loading === false && <div className="details">
           <div className="id">#{data.id}</div>

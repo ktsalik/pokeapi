@@ -27,4 +27,11 @@
   border: 1px solid #333;
   border-radius: 27px;
   font-size: 16px;
+}
+.pokemon-list .topbar select {
+  outline: none;
+  border: none;
+  margin: 0 10px;
+  font-size: 16px;
+  background: transparent;
 }/*# sourceMappingURL=PokemonList.css.map */

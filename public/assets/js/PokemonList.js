@@ -1,6 +1,11 @@
 const PokemonList = (props) => {
   const [filteredPokemons, setFilteredPokemons] = useState([]);
+  const [pokemonTypes, setPokemonTypes] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [typeQuery, setTypeQuery] = useState('');
+
+  const [, updateState] = React.useState();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
 
   useEffect(() => {
     let data = props.data;
@@ -16,6 +21,23 @@ const PokemonList = (props) => {
     setSearchQuery(e.target.value);
   };
 
+  const onTypeChange = (e) => {
+    setTypeQuery(e.target.value);
+  };
+
+  const onCardLoad = (data) => {
+    const types = pokemonTypes;
+
+    data.types.forEach((typeItem) => {
+      if (types.indexOf(typeItem.type.name) === -1) {
+        types.push(typeItem.type.name);
+      }
+    });
+
+    setPokemonTypes(types);
+    forceUpdate();
+  };
+
   return (
     <div className="pokemon-list">
       <div className="topbar">
@@ -25,6 +47,19 @@ const PokemonList = (props) => {
           value={searchQuery}
           onChange={onSearchChange}
         />
+
+        <select
+          value={typeQuery}
+          onChange={onTypeChange}
+        >
+          {
+            pokemonTypes.map((type) => {
+              return (
+                <option value={type}>{type.capitalize()}</option>
+              );
+            })
+          }
+        </select>
       </div>
 
       {
@@ -39,6 +74,8 @@ const PokemonList = (props) => {
             key={i}
             data={pokemon}
             visible={filteredPokemons.find((p) => p.name === pokemon.name)}
+            visibleType={typeQuery}
+            onLoad={onCardLoad}
           />
         );
       })}

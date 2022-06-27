@@ -28,5 +28,13 @@
       border-radius: 27px;
       font-size: 16px;
     }
+
+    select {
+      outline: none;
+      border: none;
+      margin: 0 10px;
+      font-size: 16px;
+      background: transparent;
+    }
   }
 }
