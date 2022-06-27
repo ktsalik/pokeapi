@@ -61,7 +61,7 @@ function PokemonCard(props) {
           </div>
 
           <div className="sprite">
-            {/* <img src={spriteURL} /> */}
+            <img src={spriteURL} />
           </div>
 
           <div className="name">{data.name.capitalize()}</div>
