@@ -63,11 +63,28 @@
       z-index: 11;
     }
 
+    .favourite {
+      position: absolute;
+      bottom: calc(-80px * 0.2);
+      right: calc(-80px * 0.2);
+      width: 80px;
+      height: 80px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      background-color: #FFF;
+      z-index: 11;
+      cursor: pointer;
+    }
+
     .sprite {
       z-index: 10;
 
       img {
-        width: 150px;
+        width: 150px;;
       }
     }
 

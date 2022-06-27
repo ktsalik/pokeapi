@@ -1,12 +1,17 @@
 function PokemonCard(props) {
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState(null);
+  const [isFavourite, setIsFavourite] = React.useState(null);
   const indicesRef = React.useRef();
 
   React.useEffect(() => {
     axios.get(props.data.url).then((response) => {
       setLoading(false);
       setData(response.data);
+
+      request.get(`api/pokemon/${response.data.id}`).then((response) => {
+        setIsFavourite(response.data.is_favourite);
+      });
     });
   }, []);
 
@@ -15,6 +20,12 @@ function PokemonCard(props) {
       initDragToScroll(indicesRef.current);
     }
   }, [loading, indicesRef]);
+
+  const onFavouriteClick = () => {
+    request.get(`api/pokemon/favourite/${data.id}`).then((response) => {
+      setIsFavourite(response.data.is_favourite);
+    });
+  };
 
   let spriteURL = '';
 
@@ -38,8 +49,19 @@ function PokemonCard(props) {
             {data.weight.toFixed(1)}kg
           </div>
 
+          <div
+            className="favourite"
+            onClick={onFavouriteClick}
+          >
+            {
+              isFavourite
+                ? <i class="fa fa-heart fa-xl"></i>
+                : <i class="fa-regular fa-heart fa-xl"></i>
+            }
+          </div>
+
           <div className="sprite">
-            <img src={spriteURL} />
+            {/* <img src={spriteURL} /> */}
           </div>
 
           <div className="name">{data.name.capitalize()}</div>
